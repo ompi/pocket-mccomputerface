@@ -29,12 +29,12 @@ sendChar:
 	STA (uartBase)
 waitSend:
 	LDA ([+5]uartBase)
-	AND 40
-	JR NZ, waitSend
+	AND 20
+	JR Z, waitSend
 	RET
 
 uartBase: .EQU 8000
 
 myMessage:
 .TEXT
-"Hello World!\00"
+"Hello World! 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef\00"
