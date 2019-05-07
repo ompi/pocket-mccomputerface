@@ -1,4 +1,4 @@
-.ORIGIN: 0
+.ORIGIN: 8000
 .CODE
 	LDA 83
 	STA ([+3]uartBase)
@@ -62,5 +62,5 @@ dumpLine:
 	STA L
 	JR readLoop
 
-uartBase: .EQU 8000
+uartBase: .EQU 0000
 userRam: .EQU 4100

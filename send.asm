@@ -1,5 +1,14 @@
-.ORIGIN: 0
+.ORIGIN: 8000
 .CODE
+	LDA 00
+	STA (7875)
+	LDA <myMessage
+	STA H
+	LDA >myMessage
+	STA L
+	LDA 0c
+	CALL ED00
+
 	LDA 83
 	STA ([+3]uartBase)
 	LDA 01
@@ -33,7 +42,7 @@ waitSend:
 	JR Z, waitSend
 	RET
 
-uartBase: .EQU 8000
+uartBase: .EQU 0000
 
 myMessage:
 .TEXT
