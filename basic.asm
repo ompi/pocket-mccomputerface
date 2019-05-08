@@ -32,8 +32,10 @@
         LDA 0F
         STA ([+2]uartBase)
 
-	LDA $X
-	CALL sendChar
+	LDA FA
+	CALL sendHex
+	LDA 52
+	CALL sendHex
 
 .BYTE
 	CD 2E
@@ -94,10 +96,17 @@ sendHex:
 	STA B
 	AEX
 	AND 0F
-	ADC $0
-	CALL sendChar
+	CALL sendNibble
 	LDA B
 	AND 0F
+	CALL sendNibble
+	RET
+
+sendNibble:
+	CPA 09
+	JR NC, lessThanA
+	ADC 06
+lessThanA:
 	ADC $0
 	CALL sendChar
 	RET
